@@ -17,7 +17,7 @@ class BaseModel(Model):
         abstract = True
 
     def __str__(self):
-        return f"{self.__class__.__name__}(name={self.name})"
+        return self.name
 
 
 class District(BaseModel):
@@ -44,7 +44,7 @@ class Product(BaseModel):
 
 
 class ProductPrice(Model):
-    product = ForeignKey(Product, on_delete=CASCADE, verbose_name="Продукт")
+    product = ForeignKey(Product, on_delete=CASCADE, related_name="prices", verbose_name="Продукт")
     price = PositiveIntegerField("Цена")
 
     class Meta:
@@ -52,7 +52,7 @@ class ProductPrice(Model):
         verbose_name_plural = "Цена товаров"
 
     def __str__(self):
-        return f"{self.__class__.__name__}(product={self.product.name}, price={self.price})"
+        return f"{self.product.name}, price={self.price}"
 
 
 class NetworkEnterprise(BaseModel):
