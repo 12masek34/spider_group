@@ -39,7 +39,7 @@ from app.serializers import (
 class OrganizationByDistrictViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     """Список заведений - с условием заранее выбранного района.
 
-    Возможно выполнитьфильтрацию по названию категори.
+    Возможно выполнить фильтрацию по названию категори.
     Возможно выполнить поиск по имени товара.
 
     Пример запроса -
@@ -81,7 +81,7 @@ class OrganizationDetailAPIView(RetrieveAPIView):
 
 
 class ProductViewSet(ModelViewSet):
-    """Добавление товара/услуги и детальная информация по товару\услуге.
+    """Добавление товара/услуги и детальная информация по товару/услуге.
 
     Пример запроса добавления -
         curl --location 'http://127.0.0.1:8000/api/products/' \
@@ -89,9 +89,9 @@ class ProductViewSet(ModelViewSet):
         --header 'Content-Type: application/json' \
         --data '{
             "category": {
-                "name": "sss"
+                "name": "name"
             },
-            "name": "sss"
+            "name": "name"
         }
         '
     Пример запроса детальной информации -
