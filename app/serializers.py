@@ -57,3 +57,18 @@ class OrganizationSerializer(ModelSerializer):
     class Meta:
         model = Enterprise
         fields = "__all__"
+
+
+class ProductCreateSerializer(ModelSerializer):
+    category = CategorySerializer()
+
+    def create(self, validated_data: dict) -> Product:
+        category = validated_data.pop("category")
+        category, _ = Category.objects.get_or_create(**category)
+        product, _ = Product.objects.get_or_create(category=category, **validated_data)
+
+        return product
+
+    class Meta:
+        model = Product
+        fields = "__all__"
